@@ -1,0 +1,26 @@
+<h1 class="mb-4 text-white">{{title}}</h1>
+
+<form action="/routes/tasks" method="POST">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Enter your task" name="task" autofocus="true">
+        <button class="btn btn-secondary" type="submit">Add</button>
+    </div>
+</form>
+
+<ul class="list-group">
+    {{#each tasks}}
+    <li class="list-group-item">
+        <form action="/routes/tasks/remove" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button class="btn btn-danger btn-sm float-end">Remove</button>
+        </form>
+        {{this.task}}
+    </li>
+    {{/each}}
+
+    <div class="text-center text-muted">
+        {{#if isEmpty}}
+        No task found
+        {{/if}}
+    </div>
+</ul>
